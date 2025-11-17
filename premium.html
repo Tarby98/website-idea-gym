@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peak Performance - Join Basic</title>
+  <link href="style.css" rel="stylesheet"/> 
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url("https://images.ctfassets.net/nnkxuzam4k38/5uWJWkeNbfKj1xCb0QYw4W/5f98c1cf50300f106e1027609733e4cb/white-triangle.jpg");
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+     @keyframes floatIn {
+   0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+   }
+   100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+   }
+ } 
+
+    #loadingScreen {
+     position: fixed;
+     top: 0; left: 0;
+     width: 100%;
+     height: 100%;
+     background: #f8f8f8 url("https://images.ctfassets.net/nnkxuzam4k38/5uWJWkeNbfKj1xCb0QYw4W/5f98c1cf50300f106e1027609733e4cb/white-triangle.jpg") center/cover no-repeat;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     z-index: 9999;
+   }
+
+   .loader-text {
+     font-size: 2rem;
+     font-weight: bold;
+     color: #FF6600;
+     margin-bottom: 20px;
+     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+     letter-spacing: 1px;
+    }
+
+    .loader-bar {
+     width: 200px;
+     height: 10px;
+     background: #ddd;
+     border-radius: 5px;
+     overflow: hidden;
+    }
+
+   .loader-fill {
+     width: 0;
+     height: 100%;
+     background: #FF6600;
+     animation: fillBar 2s forwards;
+     border-radius: 5px;
+    }
+
+@keyframes fillBar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+    .membership-card {
+     background: #f8f8f8;
+     border-radius: 15px;
+     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+     padding: 40px 30px;
+     max-width: 400px;
+     width: 90%;
+     box-sizing: border-box;
+     text-align: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     opacity: 0;
+     transform: translateY(50px) scale(0.95);
+     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+    .membership-card.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .membership-card h3 {
+      color: #FF6600;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .membership-card .price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .membership-card ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+
+    .membership-card ul li {
+      margin-bottom: 12px;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .membership-card ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #FF6600;
+    }
+
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .payment-icons img {
+      height: 40px;
+      width: auto;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .payment-icons img:hover {
+      transform: scale(1.2);
+    }
+
+   .buttons-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+   .button {
+     display: inline-flex;             
+     justify-content: center;          
+     align-items: center;            
+     width: 200px;                      
+     height: 50px;                     
+     color: #fff;
+     border-radius: 8px;
+     font-size: 1.1rem;
+     font-weight: bold;
+     text-decoration: none;
+     transition: background 0.3s, transform 0.2s;
+     cursor: pointer;
+    }
+
+   .button:hover {
+     background: #e65c00;
+     transform: scale(1.05);
+   }
+
+ @media screen and (max-width: 500px) {
+  .membership-card {
+    padding: 30px 20px;
+  }
+
+  .membership-card h3 {
+    font-size: 1.6rem;      
+  }
+
+  .membership-card .price {
+    font-size: 2rem;        
+  }
+
+  .payment-icons {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .payment-icons img {
+    max-width: 50px;
+  }
+
+  .button {
+    width: 100%;            
+    height: 45px;
+  }
+}
+  </style>
+</head>
+<body>
+
+    <div id="loadingScreen">
+  <div class="loader-text">Loading Peak Performance...</div>
+  <div class="loader-bar">
+    <div class="loader-fill"></div>
+  </div>
+</div>
+
+  <div class="membership-card">
+    <h3>Premium Membership</h3>
+    <p class="price">£79/month</p>
+    <ul>
+      <li>All Standard benefits</li>
+      <li>Unlimited group classes</li>
+      <li>1 personal training session per week</li>
+      <li>Access to VIP lounge</li>
+    </ul>
+
+    <div class="payment-icons">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay" title="Apple Pay">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" title="Pay with Card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSpYYf-D7Ef7rJ6HwOgPNvsge4FwJstnT9ng&s" alt="Mastercard" title="Pay with Card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKdVI1JKT1fELWB4xGTPo-NJ3lm_Bb1MLnQQ&s" alt="PayPal" title="Pay with PayPal">
+    </div>
+
+    <div class="buttons-container">
+      <button class="button" id="joinNow">Join Now</button>
+      <button onclick="window.location.href='index.html'" class="button">Back to Peak Performance</button>
+    </div>
+  </div>
+
+<script>
+
+    /* EASTER EGG - PRESS THESE KEYS IN ORDER TO MAKE THE MEMBERSHIP CARD CHANGE
+       ArrowUp - ArrowUp - ArrowDown - ArrowDown - ArrowLeft - ArrowRight - ArrowLeft - ArrowRight - "b" - "a"
+       */
+
+let secretKeys = [];
+const konami = [
+  "ArrowUp","ArrowUp",
+  "ArrowDown","ArrowDown",
+  "ArrowLeft","ArrowRight",
+  "ArrowLeft","ArrowRight",
+  "b","a"
+];
+
+document.addEventListener("keydown", function(e) {
+  secretKeys.push(e.key);
+  if (secretKeys.length > konami.length) {
+    secretKeys.shift();
+  }
+
+  if (JSON.stringify(secretKeys) === JSON.stringify(konami)) {
+    
+    const card = document.querySelector(".membership-card");
+    card.style.transition = "0.6s";
+    card.style.background = "linear-gradient(135deg, #ffd700, #ffae00)";
+    card.style.boxShadow = "0 0 25px gold";
+    card.style.color = "#000";
+
+    let msg = document.createElement("p");
+    msg.innerText = "🎉 ULTRA PREMIUM MODE UNLOCKED!";
+    msg.style.fontWeight = "bold";
+    msg.style.fontSize = "1.3rem";
+    msg.style.marginTop = "15px";
+    msg.style.color = "#000";
+
+    card.appendChild(msg);
+
+    alert("🔥 SECRET UNLOCKED: Ultra Premium Mode Activated!");
+  }
+});
+
+/* MAKE THE MEMBERSHIP CARD FADE IN WHEN THE PAGE LOADS.
+   ADD A MESSAGE WHEN USER PRESSES 'JOIN NOW'
+   */
+
+document.addEventListener("DOMContentLoaded", function() {
+  const loadingScreen = document.getElementById("loadingScreen");
+  const card = document.querySelector(".membership-card");
+
+  setTimeout(() => {
+    loadingScreen.style.opacity = 0;
+    loadingScreen.style.transition = "opacity 0.5s ease";
+    setTimeout(() => {
+      loadingScreen.style.display = "none";
+
+      card.classList.add("active");
+    }, 500); 
+  }, 2000); 
+
+  document.getElementById("joinNow").addEventListener("click", () => {
+    alert("⚠️ This website is not real. No payment will be processed.");
+  });
+});
+</script>
+
+</body>
+</html>
